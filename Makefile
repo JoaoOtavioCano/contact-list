@@ -1,7 +1,7 @@
-all: main.c a.c
-	gcc a.c -c
+all: main.c lista.c
+	gcc lista.c -c
 	gcc main.c -c
-	gcc a.o main.o -o main
+	gcc lista.o main.o -o main
 
 
 run: main

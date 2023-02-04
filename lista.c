@@ -55,13 +55,16 @@ int removerContato(FILE *lista, char *nome){
   rename("contatos.csv", "oldfile.csv");
   oldfile = lista;
   lista = fopen("contatos.csv", "a");
+  fprintf(lista, "nome,celular,\n");
   rewind(oldfile);
 
-  while(!feof(oldfile))
+  while(1 > 0)
   {
     fscanf(oldfile, "%s", linha);
+    if(feof(oldfile))
+      break;
     token = strtok(linha, ",");
-    if (strcmp(token,nome) != 0)
+    if (strcmp(token,nome) != 0 && strcmp(token, "nome") != 0)
     {
       fprintf(lista, "%s,", token);
       token = strtok(NULL, ",");
@@ -71,6 +74,7 @@ int removerContato(FILE *lista, char *nome){
 
   remove("oldfile.csv");
   fclose(oldfile);
+  fclose(lista);
   return SUCESSO;
 }
 

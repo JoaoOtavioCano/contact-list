@@ -4,6 +4,14 @@
 #include <string.h>
 
 
+char escolha_de_operacao(void){
+  char c;
+  printf("Digite: ");
+  c = getchar();
+  return c;
+}
+
+
 int inserirContato(FILE *lista, tipoContato contato){
 
   if( buscarContato(lista, contato.nome) == SUCESSO){
@@ -19,20 +27,51 @@ int buscarContato(FILE *lista, char *nome){
   char *token;
 
   rewind(lista);
-  
+
   while(1 > 0){
       fscanf(lista, "%s", linha);
       token = strtok(linha, ",");
       if (strcmp(token,nome) == 0){
-          printf("Sucesso\n");
           return SUCESSO;
       }
       else if (feof(lista)){
           break;
       }
   }
-  printf("Não encontrou\n");
   return NAO_ENCONTROU;
 }
-//int removerContato(FILE *lista, char *nome){}
+
+int removerContato(FILE *lista, char *nome){
+  char linha[55];
+  char *token;
+  FILE *oldfile;
+  
+  if( buscarContato(lista, nome) == NAO_ENCONTROU)
+  {
+    printf("Esse contato não existe!\n");
+    return NAO_ENCONTROU;
+  }
+
+  rename("contatos.csv", "oldfile.csv");
+  oldfile = lista;
+  lista = fopen("contatos.csv", "a");
+  rewind(oldfile);
+
+  while(!feof(oldfile))
+  {
+    fscanf(oldfile, "%s", linha);
+    token = strtok(linha, ",");
+    if (strcmp(token,nome) != 0)
+    {
+      fprintf(lista, "%s,", token);
+      token = strtok(NULL, ",");
+      fprintf(lista, "%s,\n", token);
+    }
+  }
+
+  remove("oldfile.csv");
+  fclose(oldfile);
+  return SUCESSO;
+}
+
 //int alterarContato(FILE *lista, char *nome){}

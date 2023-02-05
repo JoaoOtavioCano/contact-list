@@ -101,3 +101,28 @@ int alterarContato(FILE *lista, char *nome){
 
   return SUCESSO;
 }
+
+int retornarInfo(FILE *lista, char *nome){
+  if( buscarContato(lista, nome) == NAO_ENCONTROU)
+  {
+    printf("Esse contato não existe!\n");
+    return NAO_ENCONTROU;
+  }
+
+  char linha[55];
+  char *token;
+
+  rewind(lista);
+
+  while(1 > 0)
+  {
+    fscanf(lista, "%s", linha);
+    token = strtok(linha, ",");
+    if (strcmp(token,nome) == 0)
+    {
+      token = strtok(NULL, ",");
+      printf("O celular de %s é: %s\n", nome ,token);
+      return SUCESSO;
+    }
+  }
+}

@@ -28,15 +28,18 @@ int main(){
       inserirContato(contatos, contato);
     }else if(operacao == 1)
     {
+      printf("Contato:");
       scanf("%s", contato.nome);
       removerContato(contatos, contato.nome);
     }else if(operacao == 4)
     {
       break;
-    }/*else if(operacao == 'B')
+    }else if(operacao == 2)
     {
-
-    }*/
+      printf("Contato:");
+      scanf("%s", contato.nome);
+      alterarContato(contatos, contato.nome);
+    }
 
     fclose(contatos); 
 

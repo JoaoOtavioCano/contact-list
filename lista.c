@@ -78,4 +78,26 @@ int removerContato(FILE *lista, char *nome){
   return SUCESSO;
 }
 
-//int alterarContato(FILE *lista, char *nome){}
+int alterarContato(FILE *lista, char *nome){
+
+  if( buscarContato(lista, nome) == NAO_ENCONTROU)
+  {
+    printf("Esse contato não existe!\n");
+    return NAO_ENCONTROU;
+  }
+
+  removerContato(lista, nome);
+
+  fclose(lista);
+
+  lista = fopen("contatos.csv", "a+");
+
+  tipoContato alteracao;
+  strcpy(alteracao.nome, nome);
+  printf("Novo celular: ");
+  scanf("%s", alteracao.celular);
+
+  inserirContato(lista, alteracao);
+
+  return SUCESSO;
+}

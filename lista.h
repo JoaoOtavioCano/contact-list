@@ -17,6 +17,6 @@ char escolha_de_operacao(void);
 int inserirContato(FILE *lista, tipoContato contato);
 int buscarContato(FILE *lista, char *nome);
 int removerContato(FILE *lista, char *nome);
-//int alterarContato(FILE *lista, char *nome);
+int alterarContato(FILE *lista, char *nome);
 
 #endif

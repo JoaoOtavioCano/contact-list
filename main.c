@@ -55,6 +55,9 @@ int main(){
       printf("Contato:");
       scanf("%s", contato.nome);
       retornarInfo(contatos, contato.nome);
+    }else
+    {
+      printf("Type a vaid operation!\n")
     }
 
     fclose(contatos); 

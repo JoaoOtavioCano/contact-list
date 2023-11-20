@@ -1,6 +1,6 @@
 # contact-list
 This is a contact list programm in c using csv type files to save it status.
 
-### neds to be done
+### needs to be done
 1. index file
 2. traslation to english
